@@ -12,7 +12,7 @@ const generateToken = (userId) => {
 };
 
 const sendVerificationEmail = async (user, rawToken) => {
-  const appUrl = process.env.CLIENT_URL || "http://localhost:5173";
+  const appUrl = process.env.CLIENT_URL || "https://reporter-eight.vercel.app/";
   const link = `${appUrl}/verify-email/${rawToken}`;
   await sendEmail(
     user.email,
