@@ -1,17 +1,22 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "https://reporter-lq0o.onrender.com",
+  baseURL:
+    import.meta.env.VITE_API_URL ||
+    "https://reporter-lq0o.onrender.com/api",
 });
 
 API.interceptors.request.use((config) => {
   const stored = localStorage.getItem("civic_user");
+
   if (stored) {
     const user = JSON.parse(stored);
+
     if (user?.token) {
       config.headers.Authorization = `Bearer ${user.token}`;
     }
   }
+
   return config;
 });
 
